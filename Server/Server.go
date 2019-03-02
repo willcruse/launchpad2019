@@ -10,13 +10,13 @@ import (
 	"time"
 )
 
-type Weather struct {
-	windspeed float64
-	direction float64
-	temp      float64
+type weather struct { 
+	Windspeed float64 `json:speed`
+	Direction float64 `json:direction`
+	Temp      float64 `json:temp`
 }
 
-type Destination struct {
+type destination struct { //
 	lat  float64
 	long float64
 	name string
@@ -24,22 +24,22 @@ type Destination struct {
 
 //Dates in format YYYY-MM-DD eg 2019-02-28
 func main() {
-	bath := Destination{
+	bath := destination{
 		51.3758,
 		-2.3599,
 		"Bath",
 	}
 	res := pullWeather([]string{"2019-03-03", "2019-03-06"}, bath)
-	fmt.Printf("Windspeed: %.3f\tDirection %.3f\tTemp: %.3f\n", res[0].windspeed, res[0].direction, res[0].temp)
+	fmt.Printf("Windspeed: %.3f\tDirection %.3f\tTemp: %.3f\n", res[0].Windspeed, res[0].Direction, res[0].Temp)
 }
 
-func pullWeather(date []string, dest Destination) []Weather {
+func pullWeather(date []string, dest destination) []weather {
 	apiKey := "36785063bdf731228df7be0df5b5562c"
 	reqString := fmt.Sprintf("http://api.openweathermap.org/data/2.5/forecast?lat=%f&lon=%f&appid=%s", dest.lat, dest.long, apiKey)
 	req, err := http.Get(reqString)
 	if err != nil {
 		fmt.Println(err)
-		return []Weather{Weather{
+		return []weather{weather{
 			-1,
 			-1,
 			-1,
@@ -53,7 +53,7 @@ func pullWeather(date []string, dest Destination) []Weather {
 	err = json.Unmarshal([]byte(st), &result)
 	if err != nil {
 		fmt.Println(err)
-		return []Weather{Weather{
+		return []weather{weather{
 			-1,
 			-1,
 			-1,
@@ -64,13 +64,13 @@ func pullWeather(date []string, dest Destination) []Weather {
 	to := findDay(float64(convertToUnix(date[1])), list)
 	if from == -1 || to == -1{
 		fmt.Printf("No valid time\t%d\t%d\n", from, to)
-		return []Weather{Weather{
+		return []weather{weather{
 			-1,
 			-1,
 			-1,
 		}}
 	}
-	var final []Weather
+	var final []weather
 	final = append(final, getWeatherStuff(list[from]))
 	final = append(final, getWeatherStuff(list[to]))
 	return final
@@ -96,11 +96,11 @@ func convertToUnix(date string) int64 {
 	return unix.Unix()
 }
 
-func getWeatherStuff(obj interface{}) Weather {
+func getWeatherStuff(obj interface{}) weather {
 	la := obj.(map[string]interface{})
 	wind := la["wind"].(map[string]interface{})
 	maiN := la["main"].(map[string]interface{})
-	return Weather{
+	return weather{
 		wind["speed"].(float64),
 		wind["deg"].(float64),
 		maiN["temp"].(float64),
