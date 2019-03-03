@@ -6,6 +6,12 @@ class destination:
         self.pos = pos
         self.name = name
         self.airport = airport
+    destinations = [
+      destination([16.538799, -23.041800], "Cape Verde", "SID"),
+      destination([-6.135730, 39.362122], "Zanzibar", "ZNZ"),
+      destination([-3.682650, -38.737560], "Cumbuco, Brazil", "FOR"),
+      destination([-28.016666, 153.399994], "Gold Coast, Australia", "OOL")
+    ]
 
 
 class weather:
@@ -56,3 +62,14 @@ class flight:
         self.dest = "SID"
         self.fro = "LGW"
         self.company = "Tap Air Portugal"
+
+    flights = [
+  flight(150, 1000, 1200, "SID", "LGW", "Tap Air Portugal", "2019-04-23"),
+  flight(160, 800, 1600, "ZNZ", "LHR", "British Airways", "2019-04-23"),
+  flight(170, 900, 1500, "FOR", "STN", "KLM", "2019-04-23"),
+  flight(180, 1700, 2100, "OOL", "LHR", "British Airways", "2019-04-23")
+  flight(150, 1000, 1200, "LGW", "SID", "Tap Air Portugal", "2019-04-23"),
+  flight(160, 800, 1600, "LHR", "ZNZ", "British Airways", "2019-04-23"),
+  flight(170, 900, 1500, "STN", "FOR", "KLM", "2019-04-23"),
+  flight(180, 1700, 2100, "LHR", "OOL", "British Airways", "2019-04-23")
+  ]

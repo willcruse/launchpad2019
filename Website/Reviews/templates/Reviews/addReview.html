@@ -1,65 +1,73 @@
-<!doctype HTML>
 <html>
-  <title> Add a Review </title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'Reviews/custom.css'%}">
-<body>
-  <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
-  <script type="text/javascript" src="{% static 'Reviews/thing.js'%}"></script>
-  <div class="dropdown" style="float:right;">
-    <button class="dropbtn">Menu</button>
-    <div class="dropdown-content">
-    <a href="/reviews/displayReviews">Home</a>
-    <a href="/reviews">Review</a>
+  <head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Reviews/style.css'%}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+    <script src="{% static 'Reviews/script.js' %}"></script>
+  </head>
+  <body>
+    <div id="darker"></div>
+
+    <div class="line"><div id="progress1"></div></div>
+    <div id="point1Filled"></div>
+    <div id="point2"></div>
+    <div id="point3"></div>
+    <div id="point4"></div>
+    <div id="point5"></div>
+
+    <div id="questionContainerAppear">
+      <h1 id="question1">Where are you flying from?</h1>
+      <form>
+        <input type="text" id="airport" name="search" placeholder="Airport IATA">
+        <input type="button" name="Submit" id="submit" value="Next" onclick="step1to2()"/>
+      </form>
     </div>
-  </div>
-  <div class="container">
-    <h1><br> Type your Review Below: </h1>
-    <form>
-      <div class="form-group">
-        <label for"inputAuthor">Author</label>
-        <input type="text" class="form-control" id="source" placeholder="Input author here" style="background:#36393f;border:#36393f;color:white">
-      </div>
-      <div class="form-group">
-        <label for"inputLocation">Location</label>
-        <input type="text" class="form-control" id="duration" placeholder="Input location here" style="background:#36393f;border:#36393f;color:white">
-      </div>
-      <div class="form-group">
-        <label for"inputAuthor">Review</label>
-        <textarea type="text" class="form-control" id="budget" placeholder="Input review here" style="background:#36393f;border:#36393f;color:white"></textarea>
-      </div>
-      <div class="form-group">
-        <label for"inputAuthor">Review</label>
-        <textarea type="text" class="form-control" id="noOfPeople" placeholder="Input review here" style="background:#36393f;border:#36393f;color:white"></textarea>
-      </div>
-      <div class="form-group">
-        <label for"inputAuthor">Review</label>
-        <textarea type="text" class="form-control" id="skillLevel" placeholder="Input review here" style="background:#36393f;border:#36393f;color:white"></textarea>
-      </div>
-      <div class="form-group">
-        <label for"inputAuthor">Review</label>
-        <textarea type="text" class="form-control" id="windSpeed" placeholder="Input review here" style="background:#36393f;border:#36393f;color:white"></textarea>
-      </div>
-      <div class="form-group">
-        <label for"inputAuthor">Review</label>
-        <textarea type="text" class="form-control" id="windDirection" placeholder="Input review here" style="background:#36393f;border:#36393f;color:white"></textarea>
-      </div>
-      <div class="form-group">
-        <label for"inputAuthor">Review</label>
-        <textarea type="text" class="form-control" id="temperature" placeholder="Input review here" style="background:#36393f;border:#36393f;color:white"></textarea>
-      </div>
-      <div style="text-align:center">
-        <button id="addButton",> Add Review </button>
-      </div>
-    </form>
 
+    <div id="questionContainer2">
+      <h1 id="question2">How many days will this trip be?</h1>
+      <form>
+        <input type="number" name="points" id="duration" step="1" placeholder="Duration">
+        <input type="button" name="Submit" id="submit" value="Next" onclick="step2to3()">
+      </form>
+    </div>
 
-  </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
-  <script type="text/javascript" src="{% static 'Reviews/thing.js'%}"></script>
+    <div id="questionContainer3">
+      <h1 id="question3">What is your budget for the whole trip in pounds?</h1>
+      <form>
+        <input type="text" id="budget" name="search" placeholder="Budget">
+        <input type="button" name="Submit" id="submit" value="Next" onclick="step3to4()">
+      </form>
+    </div>
 
+    <div id="questionContainer4">
+      <h1 id="question4">How many people are going on this trip?</h1>
+      <form>
+        <input type="number" name="points" id="people" step="1" placeholder="Number of people">
+        <input type="button" name="Submit" id="submit" value="Next" onclick="step4to5()">
+      </form>
+    </div>
 
-</body>
+    <div id="questionContainer5">
+      <h1 id="question5">What is your skill level</h1>
+      <form>
+        <input type="radio" id="skillLevel1" name="skillLevel" value="B" checked="checked"> <a id="skill">Beginner</p><br>
+        <input type="radio" id="skillLevel2" name="skillLevel" value="I"> <a id="skill">Intermediate</p><br>
+        <input type="radio" id="skillLevel3" name="skillLevel" value="A"> <a id="skill">Advanced</p>
+        <input type="button" name="Submit" id="submit2" value="Next" onclick="step5toEnd()">
+      </form>
+    </div>
 
+    <div id="questionContainer6">
+      <h1 id="question6">Summary</h1>
+      <form>
+        <p id="summary1"></p>
+        <p id="summary2"></p>
+        <p id="summary3"></p>
+        <p id="summary4"></p>
+        <p id="summary5"></p>
+        <input type="button" name="Submit" id="submitFinal" value="Submit">
+      </form>
+    </div>
+
+  </body>
 </html>

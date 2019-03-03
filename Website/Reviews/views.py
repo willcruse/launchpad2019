@@ -7,6 +7,7 @@ from django.core import serializers
 from recognition import SpeechRecognition
 import json
 from APIs import weather, destination, flight
+from datetime import date
 
 # Create your views here.
 
@@ -75,10 +76,22 @@ def getAudio(request):
     jsonFile = speech.recogniseVoice()
     return HttpResponse(jsonFile, content_type='application/json')
 
-def getDestinations():
-    pass
+def getDestinations(i):
+    destinations = [
+          destination([16.538799, -23.041800], "Cape Verde", "SID"),
+          destination([-6.135730, 39.362122], "Zanzibar", "ZNZ"),
+          destination([-3.682650, -38.737560], "Cumbuco, Brazil", "FOR"),
+          destination([-28.016666, 153.399994], "Gold Coast, Australia", "OOL")
+    ]
+    return destinations[i]
 
-def getWeatherInfo(dates, dest):
+
+def getWeatherInfo(dest):
+    dates = date.today()
 
     info = weather()
     pullWeather(dates, dest)
+
+
+def getFlights():
+    pass
