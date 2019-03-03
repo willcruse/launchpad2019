@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from Reviews.models import Review
 from django.core import serializers
+from recognition import SpeechRecognition
 import json
 
 # Create your views here.
@@ -42,7 +43,7 @@ def getReviews(request, l):
             data = json.dumps(data)
         return HttpResponse(data, content_type='application/json')
     else:
-        HttpResponseNotFound('<h1>Page not found</h1>')
+        raise Http404
 
 @csrf_exempt
 def incrementUpvote(request):
@@ -55,10 +56,20 @@ def incrementUpvote(request):
 
 @csrf_exempt
 def submitReview(request):
-    """ Submits the review to the database as a POST request """
-    if request.is_ajax() and request.method == 'POST':
-        r = Review(author=request.POST['author'],location=request.POST['location'],reviewText=request.POST['review'])#,datePosted=datetime.date.today())
-        r.save()
+    if request.is_ajax() and request.method == "POST":
+        f = Review(source=request.POST["source"],duration=request.POST["duration"],
+        budget=request.POST["budget"],noOfPeople=request.POST["noOfPeople"],
+        skillLevel=request.POST["skillLevel"],windSpeed=request.POST["windSpeed"],
+        windDirection=request.POST["windDirection"],temperature=request.POST["temperature"])
+        f.save()
         return HttpResponse("")
     else:
         raise Http404
+
+def getAudio(request):
+    """ Runs the speech recognition algorithm, returning the JSON file """
+    speech = SpeechRecognition(3,48000)
+    speech.takeMicInput()
+    speech.convertAudioFile()
+    jsonFile = speech.recogniseVoice()
+    return HttpResponse(jsonFile, content_type='application/json')

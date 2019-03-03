@@ -5,6 +5,8 @@
   {% load static %}
   <link rel="stylesheet" href="{% static 'Reviews/custom.css'%}">
 <body>
+  <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+  <script type="text/javascript" src="{% static 'Reviews/addReview.js'%}"></script>
   <div class="dropdown" style="float:right;">
     <button class="dropbtn">Menu</button>
     <div class="dropdown-content">
@@ -17,15 +19,35 @@
     <form>
       <div class="form-group">
         <label for"inputAuthor">Author</label>
-        <input type="text" class="form-control" id="author" placeholder="Input author here" style="background:#36393f;border:#36393f;color:white">
+        <input type="text" class="form-control" id="source" placeholder="Input author here" style="background:#36393f;border:#36393f;color:white">
       </div>
       <div class="form-group">
         <label for"inputLocation">Location</label>
-        <input type="text" class="form-control" id="location" placeholder="Input location here" style="background:#36393f;border:#36393f;color:white">
+        <input type="text" class="form-control" id="duration" placeholder="Input location here" style="background:#36393f;border:#36393f;color:white">
       </div>
       <div class="form-group">
         <label for"inputAuthor">Review</label>
-        <textarea type="text" class="form-control" id="review" placeholder="Input review here" style="background:#36393f;border:#36393f;color:white"></textarea>
+        <textarea type="text" class="form-control" id="budget" placeholder="Input review here" style="background:#36393f;border:#36393f;color:white"></textarea>
+      </div>
+      <div class="form-group">
+        <label for"inputAuthor">Review</label>
+        <textarea type="text" class="form-control" id="noOfPeople" placeholder="Input review here" style="background:#36393f;border:#36393f;color:white"></textarea>
+      </div>
+      <div class="form-group">
+        <label for"inputAuthor">Review</label>
+        <textarea type="text" class="form-control" id="skillLevel" placeholder="Input review here" style="background:#36393f;border:#36393f;color:white"></textarea>
+      </div>
+      <div class="form-group">
+        <label for"inputAuthor">Review</label>
+        <textarea type="text" class="form-control" id="windSpeed" placeholder="Input review here" style="background:#36393f;border:#36393f;color:white"></textarea>
+      </div>
+      <div class="form-group">
+        <label for"inputAuthor">Review</label>
+        <textarea type="text" class="form-control" id="windDirection" placeholder="Input review here" style="background:#36393f;border:#36393f;color:white"></textarea>
+      </div>
+      <div class="form-group">
+        <label for"inputAuthor">Review</label>
+        <textarea type="text" class="form-control" id="temperature" placeholder="Input review here" style="background:#36393f;border:#36393f;color:white"></textarea>
       </div>
       <div style="text-align:center">
         <button id="addButton",> Add Review </button>
@@ -35,7 +57,7 @@
 
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
-  <script type="text/javascript" src="{% static 'Reviews/addReview.js'%}"></script>
+  <script type="text/javascript" src="{% static 'Reviews/thing.js'%}"></script>
 
 
 </body>

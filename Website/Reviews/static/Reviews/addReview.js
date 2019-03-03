@@ -1,4 +1,5 @@
 $(document).ready(function() {
+        responsiveVoice.speak("What location would you like reviews for?");
         $('#addButton').click(function() {
           var author = $('#author').val();
           var location = $('#location').val();
