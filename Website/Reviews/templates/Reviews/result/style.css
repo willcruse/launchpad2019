@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body{
+  background-image: url("assets/background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Roboto", sans-serif;
+}
+
+#darker{
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.6;
+}
+
+h1{
+  margin-left: 15%;
+  margin-top: 100px;
+  font-family: "Roboto", sans-serif;
+}
+
+#holiday1{
+  margin-left: 10%;
+  margin-top: 50px;
+  padding-left: 20px;
+  padding-top: 1px;
+  padding-bottom: 15px;
+  background-color: rgb(212, 113, 11);
+  width: 80%;
+  height: 100px;
+  box-shadow: 5px 5px rgb(142, 73, 2);
+}
+#share1{
+  margin-left: calc(100% - 75px);
+  margin-top: -70px;
+  height: 75px;
+}
+#holiday1expanded{
+  margin-left: 10%;
+  margin-top: 50px;
+  padding-left: 20px;
+  padding-top: 1px;
+  padding-bottom: 15px;
+  background-color: rgb(212, 113, 11);
+  width: 80%;
+  height: 300px;
+  box-shadow: 5px 5px rgb(142, 73, 2);
+}
+
+#holiday2{
+  margin-left: 10%;
+  margin-top: 50px;
+  padding-left: 20px;
+  padding-top: 1px;
+  padding-bottom: 15px;
+  background-color: rgb(212, 113, 11);
+  width: 80%;
+  height: 100px;
+  box-shadow: 5px 5px rgb(142, 73, 2);
+}
+#share2{
+  margin-left: calc(100% - 75px);
+  margin-top: -70px;
+  height: 75px;
+}
+#holiday2expanded{
+  margin-left: 10%;
+  margin-top: 50px;
+  padding-left: 20px;
+  padding-top: 1px;
+  padding-bottom: 15px;
+  background-color: rgb(212, 113, 11);
+  width: 80%;
+  height: 300px;
+  box-shadow: 5px 5px rgb(142, 73, 2);
+}
