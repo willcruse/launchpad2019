@@ -1,7 +1,7 @@
 import requests
 import datetime
 
-class destinatioN:
+class destination:
     def __init__(self, pos, name, airport):
         self.pos = pos
         self.name = name
@@ -47,7 +47,7 @@ class weather:
             self.temp[k] = lis[fro]["main"]["temp"]
 
 
-class flights:
+class flight:
 
     def __init__(self):
         self.price = 150

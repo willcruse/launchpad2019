@@ -6,6 +6,7 @@ from Reviews.models import Review
 from django.core import serializers
 from recognition import SpeechRecognition
 import json
+from APIs import weather, destination, flight
 
 # Create your views here.
 
@@ -73,3 +74,11 @@ def getAudio(request):
     speech.convertAudioFile()
     jsonFile = speech.recogniseVoice()
     return HttpResponse(jsonFile, content_type='application/json')
+
+def getDestinations():
+    pass
+
+def getWeatherInfo(dates, dest):
+
+    info = weather()
+    pullWeather(dates, dest)
