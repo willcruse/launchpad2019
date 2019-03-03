@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div id="darker"></div>
+
+    <div class="line"><div id="progress1"></div></div>
+    <div id="point1Filled"></div>
+    <div id="point2"></div>
+    <div id="point3"></div>
+    <div id="point4"></div>
+    <div id="point5"></div>
+
+    <div id="questionContainerAppear">
+      <h1 id="question1">Where are you flying from?</h1>
+      <form>
+        <input type="text" id="airport" name="search" placeholder="Airport IATA">
+        <input type="button" name="Submit" id="submit" value="Next" onclick="step1to2()"/>
+      </form>
+    </div>
+
+    <div id="questionContainer2">
+      <h1 id="question2">How many days will this trip be?</h1>
+      <form>
+        <input type="number" name="points" id="duration" step="1" placeholder="Duration">
+        <input type="button" name="Submit" id="submit" value="Next" onclick="step2to3()">
+      </form>
+    </div>
+
+    <div id="questionContainer3">
+      <h1 id="question3">What is your budget for the whole trip in pounds?</h1>
+      <form>
+        <input type="text" id="budget" name="search" placeholder="Budget">
+        <input type="button" name="Submit" id="submit" value="Next" onclick="step3to4()">
+      </form>
+    </div>
+
+    <div id="questionContainer4">
+      <h1 id="question4">How many people are going on this trip?</h1>
+      <form>
+        <input type="number" name="points" id="people" step="1" placeholder="Number of people">
+        <input type="button" name="Submit" id="submit" value="Next" onclick="step4to5()">
+      </form>
+    </div>
+
+    <div id="questionContainer5">
+      <h1 id="question5">What is your skill level</h1>
+      <form>
+        <input type="radio" id="skillLevel1" name="skillLevel" value="B" checked="checked"> <a id="skill">Beginner</p><br>
+        <input type="radio" id="skillLevel2" name="skillLevel" value="I"> <a id="skill">Intermediate</p><br>
+        <input type="radio" id="skillLevel3" name="skillLevel" value="A"> <a id="skill">Advanced</p>
+        <input type="button" name="Submit" id="submit2" value="Next" onclick="step5toEnd()">
+      </form>
+    </div>
+
+    <div id="questionContainer6">
+      <h1 id="question6">Summary</h1>
+      <form>
+        <input type="button" name="Submit" id="submitFinal" value="Submit" onclick="submitData()">
+      </form>
+    </div>
+
+  </body>
+</html>
