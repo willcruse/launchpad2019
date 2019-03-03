@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.template import loader
 
 
@@ -9,7 +9,7 @@ def form(request):
         template = loader.get_template('form/index.html')
         return HttpResponse(template.render())
 
-
+@csrf_exempt
 def submitForm(request):
     if request.is_ajax() and request.method == "POST":
         f = Form(source=request.POST["source"],duration=request.POST["duration"],
@@ -19,4 +19,4 @@ def submitForm(request):
         f.save()
         return HttpResponse("Submitted")
     else:
-        HttpResponseNotFound('<h1>Page not found</h1>')
+        raise Http404
