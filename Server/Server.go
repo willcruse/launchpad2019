@@ -10,16 +10,26 @@ import (
 	"time"
 )
 
+type destination struct { 
+	lat  float64
+	long float64
+	name string
+	airport string
+}
+
 type weather struct { 
 	Windspeed float64 `json:speed`
 	Direction float64 `json:direction`
 	Temp      float64 `json:temp`
 }
 
-type destination struct { //
-	lat  float64
-	long float64
-	name string
+type flight struct {
+	Price int
+	TimeLeave int64
+	TimeArrive int64
+	Dest string
+	From string
+	Company string
 }
 
 //Dates in format YYYY-MM-DD eg 2019-02-28
@@ -28,6 +38,7 @@ func main() {
 		51.3758,
 		-2.3599,
 		"Bath",
+		"BRS",
 	}
 	res := pullWeather([]string{"2019-03-03", "2019-03-06"}, bath)
 	fmt.Printf("Windspeed: %.3f\tDirection %.3f\tTemp: %.3f\n", res[0].Windspeed, res[0].Direction, res[0].Temp)
