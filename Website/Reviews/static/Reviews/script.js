@@ -70,5 +70,7 @@ $(document).ready(function() {
       'windSpeed': windSpeed, 'windDirection': windDirection,
       'temperature': temperature}
     });
+    window.location.replace("/reviews/displayReviews");
+    // console.log("I'm here");
   });
 });

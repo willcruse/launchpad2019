@@ -10,5 +10,6 @@ $(document).ready(function() {
             dataType: 'json',
             data: {'author': author.toLowerCase(), 'location': location.toLowerCase(), 'review': review.toLowerCase()},
           });
+
         });
       });

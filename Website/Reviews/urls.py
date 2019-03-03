@@ -18,7 +18,7 @@ from . import views
 
 urlpatterns = [
     path('', views.addReviewPage, name='addReviewPage'),
-    path('getReviews/<str:l>/', views.getReviews, name='getReview'),
+    path('getReviews/', views.getReviews, name='getReview'),
     path('displayReviews/', views.displayReviews, name='displayReview'),
     path('submitReview/', views.submitReview, name='submitReview'),
     path('getAudio/', views.getAudio, name='getAudio'),

@@ -1,6 +1,6 @@
 # Imports
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from Reviews.models import Review
 from django.core import serializers
@@ -22,30 +22,6 @@ def displayReviews(request):
     context = {}
     return render(request, 'Reviews/getReview.html', context)
 
-def getReviews(request, l):
-    """ Returns a JSON file of all of the relevant reviews, returning them
-        If none are found in the intial search, then each word is searched individually
-        If still nothing is found, then "No Data" is returned"""
-    if request.is_ajax():
-        found = False
-        results = Review.objects.filter(location=l).order_by('-upvotes','-datePosted')
-        if len(results) == 0:
-            wordsInSearch = l.split(" ")
-            for word in wordsInSearch:
-                results = Review.objects.filter(location=word).order_by('-upvotes','-datePosted')
-                if len(results) > 0:
-                    found = True
-                    break
-        else:
-            found = True
-        if found:
-            data = serializers.serialize("json", results)
-        else:
-            data = {'return':"No Data"}
-            data = json.dumps(data)
-        return HttpResponse(data, content_type='application/json')
-    else:
-        raise Http404
 
 @csrf_exempt
 def incrementUpvote(request):
@@ -88,10 +64,35 @@ def getDestinations(i):
 
 def getWeatherInfo(dest):
     dates = date.today()
-
     info = weather()
-    pullWeather(dates, dest)
+    info.pullWeather(dates, dest)
+    return info
 
 
-def getFlights():
-    pass
+def getFlights(i):
+    flights = [
+      flight(150, 1000, 1200, "SID", "LGW", "Tap Air Portugal", "2019-04-23"),
+      flight(160, 800, 1600, "ZNZ", "LHR", "British Airways", "2019-04-23"),
+      flight(170, 900, 1500, "FOR", "STN", "KLM", "2019-04-23"),
+      flight(180, 1700, 2100, "OOL", "LHR", "British Airways", "2019-04-23"),
+      flight(150, 1000, 1200, "LGW", "SID", "Tap Air Portugal", "2019-04-23"),
+      flight(160, 800, 1600, "LHR", "ZNZ", "British Airways", "2019-04-23"),
+      flight(170, 900, 1500, "STN", "FOR", "KLM", "2019-04-23"),
+      flight(180, 1700, 2100, "LHR", "OOL", "British Airways", "2019-04-23")
+      ]
+    return flights[i]
+
+
+def getReviews(request):
+    validStuff = []
+    for i in range(4):
+        dest = getDestinations(i)
+        w = getWeatherInfo(dest)
+        if min(w.windspeed) >= 4.5:
+            validStuff.append({
+                "name": dest.name,
+                "airport": dest.airport,
+                "windspeed": min(w.windspeed),
+                "temp": min(w.temp)
+                })
+    return JsonResponse(validStuff,safe=False)
